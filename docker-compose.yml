@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Omikronrv1234$
+    volumes:
+      - mssql-data:/var/opt/mssql
+    restart: always
+
+  nopcommerce:
+    image: nopcommerceteam/nopcommerce:latest
+    container_name: nopcommerce
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - Store__Url=http://185.100.196.218
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=nopCommerceDb;User Id=sa;Password=Omikronrv1234$;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - nopcommerce
+    restart: always
+
+volumes:
+  mssql-data:
