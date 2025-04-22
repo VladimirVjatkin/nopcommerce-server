@@ -1,0 +1,48 @@
+# 🔧 .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# 💻 Visual Studio Code settings
+.vscode/
+
+# 🐳 Docker volumes
+docker-data/
+*.env
+
+# 📦 Node/NPM packages
+node_modules/
+npm-debug.log
+package-lock.json
+
+# 📂 Logs
+*.log
+logs/
+*.bak
+
+# 📦 NuGet packages
+*.nupkg
+
+# 🐘 SQL backups
+*.mdf
+*.ldf
+*.bak
+
+# 🔐 Secrets
+secrets.json
+
+# 💥 System files
+.DS_Store
+Thumbs.db
+
+# 🛑 Adminer Session
+adminer.css
+adminer.php
+
+# 🙈 Ignore compiled plugins (if any)
+Plugins/**/bin/
+Plugins/**/obj/
+Plugins/**/publish/
